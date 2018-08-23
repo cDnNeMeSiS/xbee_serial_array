@@ -65,6 +65,7 @@ uint8_t wakeup = 9;
 xbee xbeeSerial;
 char xbeedir[8] = {0x00, 0x13, 0xA2, 0x00, 0x40, 0xE6, 0x71, 0x55};
 String anal;
+String response;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
