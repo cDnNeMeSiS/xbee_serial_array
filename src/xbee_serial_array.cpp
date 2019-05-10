@@ -5,7 +5,7 @@
 #include "SoftwareSerial.h"
 #include <xbee_serial_array.h>
 
-SoftwareSerial xbee_Serial(10, 11);
+SoftwareSerial xbee_Serial(5, 4);
 
 void xbee::xbee_in_array() {
 	if (xbee_Serial.available()>0) {
@@ -60,15 +60,16 @@ String xbee::getdata() {
 	if (largo==0x07) {
 		for (size_t i = dataini; i <= datafin; i++) {
 			data += bufferin[i];
-			bufferin[i] = ' ';
+			//bufferin[i] = ' ';
 		}
 	}
 	else {
-		for (size_t i = dataini + 12; i <= datafin; i++) {
+		for (size_t i = dataini + 18; i <= datafin; i++) {
 			data += bufferin[i];
-			bufferin[i] = ' ';
+			//bufferin[i] = ' ';
 		}
 	}
+	memset(bufferin, 0, sizeof(bufferin));
 	return data;
 }
 
@@ -88,7 +89,7 @@ uint8_t xbee::checksum(int ini, uint8_t fin, char bufa) {
 }
 
 void xbee::sendata(String data) {
-	char buff[50];
+	char buff[100];
 	bufferout[0] = 0x7E; bufferout[1] = 0x00;
 	bufferout[2] = data.length()+14;
 	bufferout[3] = 0x10; bufferout[4] = 0x01;
@@ -108,4 +109,6 @@ void xbee::sendata(String data) {
 	digitalWrite(wakeperro, LOW);
 	delay(10);
 	for (size_t i = 0; i < data.length() + 18; i++) xbee_Serial.write(bufferout[i] & 0xFF);
+	memset(buff, 0, sizeof(buff));
+	memset(bufferout, 0, sizeof(bufferout));
 }

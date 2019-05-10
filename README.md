@@ -1,6 +1,6 @@
 # xbee_array_arduino
 ### Send and receive strings in api mode with variable length of data
-### Version:  v.9
+### Version:  v1.0.5
 ### Creator: cDn_NeMeSiS
 
 by now, the idea is works in api mode and software serial in the easiest way.
