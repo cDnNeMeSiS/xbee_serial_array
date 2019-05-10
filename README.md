@@ -60,10 +60,14 @@ void xbee::sendata(String data)
 # Example to receive data and send analog data string on xbee
 
 ``` c++
+/*
+in xbee_serial_array.cpp must change software serial pins
+*/
 #include <xbee_serial_array.h>
+
 uint8_t wakeup = 9;
 xbee xbeeSerial;
-char xbeedir[8] = {0x00, 0x13, 0xA2, 0x00, 0x40, 0xE6, 0x71, 0x55};
+char xbeedir[8] = {0x00, 0x13, 0xA2, 0x00, 0x40, 0xE6, 0x71, 0x55};//coordinator
 String anal;
 String response;
 
